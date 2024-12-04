@@ -2,6 +2,7 @@ package mathf
 
 import (
 	"fmt"
+	"math"
 	"unsafe"
 
 	"github.com/godot-ext/mathf/impl"
@@ -12,14 +13,13 @@ type Vec2i struct {
 }
 
 func (v *Vec2i) toImplf() impl.Vector2 {
-	vec := NewVec2(float64(v.X), float64(v.Y))
-	return *(*impl.Vector2)(unsafe.Pointer(&vec))
+	return *(*impl.Vector2)(unsafe.Pointer(v))
 }
 
 func (v *Vec2i) fromImplf(iv impl.Vector2) Vec2i {
-	vec := *(*Vec2)(unsafe.Pointer(&iv))
-	return Vec2i{Int(vec.X), Int(vec.Y)}
+	return *(*Vec2i)(unsafe.Pointer(&iv))
 }
+
 func (v Vec2i) toImpl() impl.Vector2i {
 	return *(*impl.Vector2i)(unsafe.Pointer(&v))
 }
@@ -65,23 +65,25 @@ func (v Vec2i) Divi(i int) Vec2i {
 }
 
 func (v Vec2i) Dot(other Vec2i) float64 {
-	return v.toImplf().Dot(other.toImplf())
+	return float64(v.X*other.X + v.Y*other.Y)
 }
 
 func (v Vec2i) Length() float64 {
-	return v.toImpl().Length()
+	return float64(math.Sqrt(float64(v.LengthSquared())))
 }
 
-func (v Vec2i) LengthSquared() int {
-	return int(v.toImpl().LengthSquared())
+func (v Vec2i) LengthSquared() float64 {
+	return float64(v.X*v.X + v.Y*v.Y)
 }
 
 func (v Vec2i) DistanceTo(other Vec2i) float64 {
-	return v.toImplf().DistanceTo(other.toImplf())
+	return float64(math.Sqrt(float64(v.DistanceSquaredTo(other))))
 }
 
-func (v Vec2i) DistanceSquaredTo(other Vec2i) int {
-	return int(v.toImplf().DistanceSquaredTo(other.toImplf()))
+func (v Vec2i) DistanceSquaredTo(other Vec2i) float64 {
+	dx := v.X - other.X
+	dy := v.Y - other.Y
+	return float64(dx*dx + dy*dy)
 }
 
 func (v Vec2i) Abs() Vec2i {

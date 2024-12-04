@@ -52,14 +52,14 @@ func TestVec2i(t *testing.T) {
 	assert.InDelta(t, 2.236068, length, 0.0001, "Length calculation failed")
 
 	lengthSquared := v1.LengthSquared()
-	assert.Equal(t, 5, lengthSquared, "Length squared calculation failed")
+	assert.Equal(t, 5.0, lengthSquared, "Length squared calculation failed")
 
 	// Test distance calculations
 	distance := v1.DistanceTo(v2)
 	assert.InDelta(t, 2.828427, distance, 0.0001, "Distance calculation failed")
 
 	distanceSquared := v1.DistanceSquaredTo(v2)
-	assert.Equal(t, 8, distanceSquared, "Distance squared calculation failed")
+	assert.Equal(t, 8.0, distanceSquared, "Distance squared calculation failed")
 
 	// Test abs
 	negVec := mathf.NewVec2i(-1, -2)

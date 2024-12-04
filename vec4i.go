@@ -3,6 +3,7 @@ package mathf
 import (
 	"fmt"
 	"github.com/godot-ext/mathf/impl"
+	"unsafe"
 )
 
 type Vec4i struct {
@@ -10,19 +11,21 @@ type Vec4i struct {
 }
 
 func (v Vec4i) toImplf() impl.Vector4 {
-	return impl.Vector4{impl.Float(v.X), impl.Float(v.Y), impl.Float(v.Z), impl.Float(v.W)}
+	vec := NewVec4(float64(v.X), float64(v.Y), float64(v.Z), float64(v.W))
+	return *(*impl.Vector4)(unsafe.Pointer(&vec))
 }
 
 func (v Vec4i) fromImplf(iv impl.Vector4) Vec4i {
-	return NewVec4i(int(iv[0]), int(iv[1]), int(iv[2]), int(iv[3]))
+	vec := *(*Vec4)(unsafe.Pointer(&iv))
+	return Vec4i{Int(vec.X), Int(vec.Y), Int(vec.Z), Int(vec.W)}
 }
 
 func (v Vec4i) toImpl() impl.Vector4i {
-	return impl.Vector4i{int32(v.X), int32(v.Y), int32(v.Z), int32(v.W)}
+	return *(*impl.Vector4i)(unsafe.Pointer(&v))
 }
 
 func (v Vec4i) fromImpl(iv impl.Vector4i) Vec4i {
-	return NewVec4i(int(iv[0]), int(iv[1]), int(iv[2]), int(iv[3]))
+	return *(*Vec4i)(unsafe.Pointer(&iv))
 }
 
 func NewVec4i(x, y, z, w int) Vec4i {

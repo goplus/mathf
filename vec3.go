@@ -2,6 +2,7 @@ package mathf
 
 import (
 	"fmt"
+	"unsafe"
 
 	"github.com/godot-ext/mathf/impl"
 )
@@ -11,11 +12,11 @@ type Vec3 struct {
 }
 
 func (v Vec3) toImpl() impl.Vector3 {
-	return impl.NewVector3(float64(v.X), float64(v.Y), float64(v.Z))
+	return *(*impl.Vector3)(unsafe.Pointer(&v))
 }
 
 func (v Vec3) fromImpl(iv impl.Vector3) Vec3 {
-	return NewVec3(iv.X(), iv.Y(), iv.Z())
+	return *(*Vec3)(unsafe.Pointer(&iv))
 }
 
 func NewVec3(x, y, z float64) Vec3 {

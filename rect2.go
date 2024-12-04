@@ -2,6 +2,7 @@ package mathf
 
 import (
 	"fmt"
+	"unsafe"
 
 	"github.com/godot-ext/mathf/impl"
 )
@@ -14,17 +15,11 @@ type Rect2 struct {
 }
 
 func (v Rect2) toImpl() impl.Rect2 {
-	return impl.Rect2{
-		Position: v.Position.toImpl(),
-		Size:     v.Size.toImpl(),
-	}
+	return *(*impl.Rect2)(unsafe.Pointer(&v))
 }
 
 func (v Rect2) fromImpl(iv impl.Rect2) Rect2 {
-	return Rect2{
-		Position: NewVec2(float64(iv.Position[0]), float64(iv.Position[1])),
-		Size:     NewVec2(float64(iv.Size[0]), float64(iv.Size[1])),
-	}
+	return *(*Rect2)(unsafe.Pointer(&iv))
 }
 
 func NewRect2(x, y, w, h float64) Rect2 {

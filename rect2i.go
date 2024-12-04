@@ -2,6 +2,7 @@ package mathf
 
 import (
 	"fmt"
+	"unsafe"
 
 	"github.com/godot-ext/mathf/impl"
 )
@@ -12,30 +13,23 @@ type Rect2i struct {
 }
 
 func (v Rect2i) toImpl() impl.Rect2i {
-	return impl.Rect2i{
-		Position: v.Position.toImpl(),
-		Size:     v.Size.toImpl(),
-	}
+	return *(*impl.Rect2i)(unsafe.Pointer(&v))
 }
 
 func (v Rect2i) fromImpl(iv impl.Rect2i) Rect2i {
-	return Rect2i{
-		Position: NewVec2i(int(iv.Position[0]), int(iv.Position[1])),
-		Size:     NewVec2i(int(iv.Size[0]), int(iv.Size[1])),
-	}
+	return *(*Rect2i)(unsafe.Pointer(&iv))
 }
 
 func (v *Rect2i) toImplf() impl.Rect2 {
-	return impl.Rect2{
-		Position: v.Position.toImplf(),
-		Size:     v.Size.toImplf(),
-	}
+	rect := NewRect2(float64(v.Position.X), float64(v.Position.Y), float64(v.Size.X), float64(v.Size.Y))
+	return *(*impl.Rect2)(unsafe.Pointer(&rect))
 }
 
 func (v *Rect2i) fromImplf(iv impl.Rect2) Rect2i {
+	rect := *(*Rect2)(unsafe.Pointer(&iv))
 	return Rect2i{
-		Position: NewVec2i(int(iv.Position[0]), int(iv.Position[1])),
-		Size:     NewVec2i(int(iv.Size[0]), int(iv.Size[1])),
+		Position: Vec2i{Int(rect.Position.X), Int(rect.Position.Y)},
+		Size:     Vec2i{Int(rect.Size.X), Int(rect.Size.Y)},
 	}
 }
 
