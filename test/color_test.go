@@ -3,7 +3,7 @@ package test
 import (
 	"testing"
 
-	"github.com/godot-ext/mathf"
+	"github.com/realdream-ai/mathf"
 	"github.com/stretchr/testify/assert"
 )
 

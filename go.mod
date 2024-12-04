@@ -1,4 +1,4 @@
-module github.com/godot-ext/mathf
+module github.com/realdream-ai/mathf
 
 go 1.21
 

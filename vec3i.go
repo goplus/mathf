@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"unsafe"
 
-	"github.com/godot-ext/mathf/impl"
+	"github.com/realdream-ai/mathf/impl"
 )
 
 type Vec3i struct {

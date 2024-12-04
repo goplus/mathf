@@ -2,8 +2,9 @@ package mathf
 
 import (
 	"fmt"
-	"github.com/godot-ext/mathf/impl"
 	"unsafe"
+
+	"github.com/realdream-ai/mathf/impl"
 )
 
 type Vec4i struct {

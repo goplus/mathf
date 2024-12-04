@@ -1,6 +1,6 @@
 package vector2
 
-import "github.com/godot-ext/mathf/impl"
+import "github.com/realdream-ai/mathf/impl"
 
 func New(x, y float64) impl.Vector2                            { return impl.NewVector2(x, y) }
 func Abs(v impl.Vector2) impl.Vector2                          { return v.Abs() }

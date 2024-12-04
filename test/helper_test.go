@@ -3,7 +3,7 @@ package test
 import (
 	"math"
 
-	"github.com/godot-ext/mathf"
+	"github.com/realdream-ai/mathf"
 )
 
 func almostEqual(a, b float64) bool {
