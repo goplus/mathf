@@ -8,6 +8,15 @@ type Color struct {
 	R, G, B, A float32
 }
 
+func NewColor(r, g, b, a float64) Color {
+	return Color{
+		R: float32(r),
+		G: float32(g),
+		B: float32(b),
+		A: float32(a),
+	}
+}
+
 func (val Color) String() string {
 	return fmt.Sprintf("(%f, %f, %f, %f)", val.R, val.G, val.B, val.A)
 }
