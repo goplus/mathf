@@ -1,20 +1,20 @@
 # Mathf - Mathematical Utilities for Go
 
-A comprehensive mathematical utility library for Go, providing implementations of common geometric types and operations. This library is designed to be efficient, easy to use, and suitable for game development and graphics applications.
+A comprehensive mathematical utility library for Go that provides efficient implementations of common geometric types and operations. This library is designed to be performant, easy to use, and particularly well-suited for game development and graphics applications.
 
 ## Features
 
 - **Vector Types**
-  - `Vector2`, `Vector2i` - 2D vectors (float and integer)
-  - `Vector3`, `Vector3i` - 3D vectors (float and integer)
-  - `Vector4`, `Vector4i` - 4D vectors (float and integer)
+  - `Vector2`, `Vector2i` - 2D vectors (float and integer versions)
+  - `Vector3`, `Vector3i` - 3D vectors (float and integer versions)
+  - `Vector4`, `Vector4i` - 4D vectors (float and integer versions)
 
 - **Rectangle Types**
-  - `Rect2`, `Rect2i` - 2D rectangles (float and integer)
-  - `AABB` - Axis-Aligned Bounding Box
+  - `Rect2`, `Rect2i` - 2D rectangles (float and integer versions)
+  - `AABB` - Axis-Aligned Bounding Box for 3D collision detection
 
 - **Quaternion**
-  - Full quaternion implementation for 3D rotations
+  - Complete quaternion implementation for 3D rotations
 
 ## Installation
 
@@ -49,18 +49,18 @@ normalized := v1.Normalized()
 ```go
 import "github.com/godot-ext/mathf"
 
-// Create rectangles
-rect := mathf.NewRect2(0, 0, 100, 100)  // x, y, width, height
+// Create rectangles (x, y, width, height)
+rect := mathf.NewRect2(0, 0, 100, 100)
 rect2 := mathf.NewRect2i(0, 0, 100, 100)
 
-// Check if point is inside
+// Check if a point is inside
 point := mathf.NewVector2(50, 50)
 isInside := rect.HasPoint(point)
 
 // Rectangle operations
-intersection := rect.Intersection(rect2)
-merged := rect.Merge(rect2)
-grown := rect.Grow(10)
+intersection := rect.Intersection(rect2)  // Get intersection area
+merged := rect.Merge(rect2)              // Combine rectangles
+grown := rect.Grow(10)                   // Expand by 10 units
 ```
 
 ### Quaternions
@@ -68,17 +68,17 @@ grown := rect.Grow(10)
 ```go
 import "github.com/godot-ext/mathf"
 
-// Create quaternion
+// Create a quaternion
 q := mathf.NewQuaternion(x, y, z, w)
 
-// Operations
-rotated := q.Rotate(vector)
-inverse := q.Inverse()
+// Common operations
+rotated := q.Rotate(vector)    // Rotate a vector
+inverse := q.Inverse()         // Get inverse rotation
 ```
 
 ## Testing
 
-The library includes comprehensive test coverage. Run the tests using:
+The library includes comprehensive test coverage for all components. Run the tests using:
 
 ```bash
 go test ./...
@@ -86,7 +86,12 @@ go test ./...
 
 ## Contributing
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+We welcome contributions! Feel free to:
+- Submit bug reports and feature requests
+- Propose improvements to documentation
+- Create pull requests for bug fixes or new features
+
+Please ensure your code follows the existing style and includes appropriate tests.
 
 ## License
 
@@ -94,4 +99,8 @@ Apache License 2.0
 
 ## Acknowledgments
 
-This library is inspired by Godot Engine's math utilities and the awesome library: [xy](https://github.com/grow-graphics/xy), and designed to provide similar functionality in Go. And inspired by 
+This library draws inspiration from:
+- [Godot Engine's](https://godotengine.org/) mathematical utilities
+- [xy](https://github.com/grow-graphics/xy) - An awesome graphics library
+
+Both have significantly influenced our design and implementation choices.
