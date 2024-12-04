@@ -1,5 +1,5 @@
-//go:build precision_double
-// +build precision_double
+//go:build !precision_single
+// +build !precision_single
 
 package mathf
 
