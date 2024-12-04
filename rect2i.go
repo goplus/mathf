@@ -5,8 +5,8 @@ import (
 )
 
 type Rect2i struct {
-	Position Vector2i
-	Size     Vector2i
+	Position Vec2i
+	Size     Vec2i
 }
 
 func (v Rect2i) toImpl() impl.Rect2i {
@@ -18,8 +18,8 @@ func (v Rect2i) toImpl() impl.Rect2i {
 
 func (v Rect2i) fromImpl(iv impl.Rect2i) Rect2i {
 	return Rect2i{
-		Position: NewVector2i(int(iv.Position[0]), int(iv.Position[1])),
-		Size:     NewVector2i(int(iv.Size[0]), int(iv.Size[1])),
+		Position: NewVec2i(int(iv.Position[0]), int(iv.Position[1])),
+		Size:     NewVec2i(int(iv.Size[0]), int(iv.Size[1])),
 	}
 }
 
@@ -32,25 +32,25 @@ func (v *Rect2i) toImplf() impl.Rect2 {
 
 func (v *Rect2i) fromImplf(iv impl.Rect2) Rect2i {
 	return Rect2i{
-		Position: NewVector2i(int(iv.Position[0]), int(iv.Position[1])),
-		Size:     NewVector2i(int(iv.Size[0]), int(iv.Size[1])),
+		Position: NewVec2i(int(iv.Position[0]), int(iv.Position[1])),
+		Size:     NewVec2i(int(iv.Size[0]), int(iv.Size[1])),
 	}
 }
 
 func NewRect2i(x, y, w, h int) Rect2i {
 	return Rect2i{
-		Position: NewVector2i(x, y),
-		Size:     NewVector2i(w, h),
+		Position: NewVec2i(x, y),
+		Size:     NewVec2i(w, h),
 	}
 }
 
-func (r *Rect2i) End() Vector2i {
+func (r *Rect2i) End() Vec2i {
 	impl := r.toImpl()
 	end := impl.End()
-	return NewVector2i(int(end[0]), int(end[1]))
+	return NewVec2i(int(end[0]), int(end[1]))
 }
 
-func (r *Rect2i) SetEnd(end Vector2i) {
+func (r *Rect2i) SetEnd(end Vec2i) {
 	impl := r.toImpl()
 	impl.SetEnd(end.toImpl())
 	*r = r.fromImpl(impl)
@@ -68,7 +68,7 @@ func (r *Rect2i) Encloses(b Rect2i) bool {
 	return r.toImpl().Encloses(b.toImpl())
 }
 
-func (r *Rect2i) Expand(to Vector2i) Rect2i {
+func (r *Rect2i) Expand(to Vec2i) Rect2i {
 	return r.fromImpl(r.toImpl().Expand(to.toImpl()))
 }
 
@@ -76,10 +76,10 @@ func (r *Rect2i) Area() int64 {
 	return r.toImpl().Area()
 }
 
-func (r *Rect2i) Center() Vector2i {
+func (r *Rect2i) Center() Vec2i {
 	impl := r.toImpl()
 	center := impl.Center()
-	return NewVector2i(int(center[0]), int(center[1]))
+	return NewVec2i(int(center[0]), int(center[1]))
 }
 
 func (r *Rect2i) Grow(amount int64) Rect2i {
@@ -98,7 +98,7 @@ func (r *Rect2i) HasArea() bool {
 	return r.toImpl().HasArea()
 }
 
-func (r *Rect2i) HasPoint(point Vector2i) bool {
+func (r *Rect2i) HasPoint(point Vec2i) bool {
 	return r.toImpl().HasPoint(point.toImpl())
 }
 

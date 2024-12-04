@@ -7,33 +7,33 @@ import (
 	"github.com/godot-ext/mathf"
 )
 
-func TestVector2(t *testing.T) {
+func TestVec2(t *testing.T) {
 	// Test construction
-	v1 := mathf.NewVector2(1, 2)
-	v2 := mathf.NewVector2(4, 5)
+	v1 := mathf.NewVec2(1, 2)
+	v2 := mathf.NewVec2(4, 5)
 
 	// Test basic arithmetic
 	sum := v1.Add(v2)
-	expected := mathf.NewVector2(5, 7)
+	expected := mathf.NewVec2(5, 7)
 	if !vec2AlmostEqual(sum, expected) {
 		t.Errorf("Add failed: got %v, expected %v", sum, expected)
 	}
 
 	diff := v2.Sub(v1)
-	expected = mathf.NewVector2(3, 3)
+	expected = mathf.NewVec2(3, 3)
 	if !vec2AlmostEqual(diff, expected) {
 		t.Errorf("Sub failed: got %v, expected %v", diff, expected)
 	}
 
 	prod := v1.Mul(v2)
-	expected = mathf.NewVector2(4, 10)
+	expected = mathf.NewVec2(4, 10)
 	if !vec2AlmostEqual(prod, expected) {
 		t.Errorf("Mul failed: got %v, expected %v", prod, expected)
 	}
 
 	// Test scalar operations
 	scaled := v1.Mulf(2)
-	expected = mathf.NewVector2(2, 4)
+	expected = mathf.NewVec2(2, 4)
 	if !vec2AlmostEqual(scaled, expected) {
 		t.Errorf("Mulf failed: got %v, expected %v", scaled, expected)
 	}
@@ -54,45 +54,45 @@ func TestVector2(t *testing.T) {
 
 	// Test normalization
 	normalized := v1.Normalize()
-	expectedNorm := mathf.NewVector2(1/math.Sqrt(5), 2/math.Sqrt(5))
+	expectedNorm := mathf.NewVec2(1/math.Sqrt(5), 2/math.Sqrt(5))
 	if !vec2AlmostEqual(normalized, expectedNorm) {
 		t.Errorf("Normalize failed: got %v, expected %v", normalized, expectedNorm)
 	}
 
 	// Test lerp
 	lerped := v1.Lerp(v2, 0.5)
-	expectedLerp := mathf.NewVector2(2.5, 3.5)
+	expectedLerp := mathf.NewVec2(2.5, 3.5)
 	if !vec2AlmostEqual(lerped, expectedLerp) {
 		t.Errorf("Lerp failed: got %v, expected %v", lerped, expectedLerp)
 	}
 }
 
-func TestVector2Additional(t *testing.T) {
-	v1 := mathf.NewVector2(1, 2)
-	v2 := mathf.NewVector2(4, 5)
+func TestVec2Additional(t *testing.T) {
+	v1 := mathf.NewVec2(1, 2)
+	v2 := mathf.NewVec2(4, 5)
 
 	// Test division
 	div := v2.Div(v1)
-	expected := mathf.NewVector2(4, 2.5)
+	expected := mathf.NewVec2(4, 2.5)
 	if !vec2AlmostEqual(div, expected) {
 		t.Errorf("Div failed: got %v, expected %v", div, expected)
 	}
 
 	// Test scalar operations
 	added := v1.Addf(2)
-	expected = mathf.NewVector2(3, 4)
+	expected = mathf.NewVec2(3, 4)
 	if !vec2AlmostEqual(added, expected) {
 		t.Errorf("Addf failed: got %v, expected %v", added, expected)
 	}
 
 	subbed := v1.Subf(0.5)
-	expected = mathf.NewVector2(0.5, 1.5)
+	expected = mathf.NewVec2(0.5, 1.5)
 	if !vec2AlmostEqual(subbed, expected) {
 		t.Errorf("Subf failed: got %v, expected %v", subbed, expected)
 	}
 
 	divided := v1.Divf(2)
-	expected = mathf.NewVector2(0.5, 1)
+	expected = mathf.NewVec2(0.5, 1)
 	if !vec2AlmostEqual(divided, expected) {
 		t.Errorf("Divf failed: got %v, expected %v", divided, expected)
 	}
@@ -127,69 +127,69 @@ func TestVector2Additional(t *testing.T) {
 	// Test normalization checks
 	normalized := v1.Normalize()
 	if !normalized.IsNormalized() {
-		t.Errorf("IsNormalized failed for normalized vector")
+		t.Errorf("IsNormalized failed for normalized Vec")
 	}
 
 	// Test finite check
 	if !v1.IsFinite() {
-		t.Errorf("IsFinite failed for finite vector")
+		t.Errorf("IsFinite failed for finite Vec")
 	}
 
 	// Test zero check
-	zero := mathf.NewVector2(0.0000001, -0.0000001)
+	zero := mathf.NewVec2(0.0000001, -0.0000001)
 	if !zero.IsApproximatelyZero() {
-		t.Errorf("IsApproximatelyZero failed for near-zero vector")
+		t.Errorf("IsApproximatelyZero failed for near-zero Vec")
 	}
 
 	// Test absolute value
-	neg := mathf.NewVector2(-1, -2)
+	neg := mathf.NewVec2(-1, -2)
 	absV := neg.Abs()
-	expected = mathf.NewVector2(1, 2)
+	expected = mathf.NewVec2(1, 2)
 	if !vec2AlmostEqual(absV, expected) {
 		t.Errorf("Abs failed: got %v, expected %v", absV, expected)
 	}
 
 	// Test ceil/floor/round
-	decimal := mathf.NewVector2(1.6, 2.2)
+	decimal := mathf.NewVec2(1.6, 2.2)
 	ceiled := decimal.Ceil()
-	expected = mathf.NewVector2(2, 3)
+	expected = mathf.NewVec2(2, 3)
 	if !vec2AlmostEqual(ceiled, expected) {
 		t.Errorf("Ceil failed: got %v, expected %v", ceiled, expected)
 	}
 
 	floored := decimal.Floor()
-	expected = mathf.NewVector2(1, 2)
+	expected = mathf.NewVec2(1, 2)
 	if !vec2AlmostEqual(floored, expected) {
 		t.Errorf("Floor failed: got %v, expected %v", floored, expected)
 	}
 
 	rounded := decimal.Round()
-	expected = mathf.NewVector2(2, 2)
+	expected = mathf.NewVec2(2, 2)
 	if !vec2AlmostEqual(rounded, expected) {
 		t.Errorf("Round failed: got %v, expected %v", rounded, expected)
 	}
 
 	// Test sign
-	mixed := mathf.NewVector2(-1.6, 2.2)
+	mixed := mathf.NewVec2(-1.6, 2.2)
 	sign := mixed.Sign()
-	expected = mathf.NewVector2(-1, 1)
+	expected = mathf.NewVec2(-1, 1)
 	if !vec2AlmostEqual(sign, expected) {
 		t.Errorf("Sign failed: got %v, expected %v", sign, expected)
 	}
 
 	// Test clamp
-	min := mathf.NewVector2(0, 0)
-	max := mathf.NewVector2(1, 1)
-	toClamp := mathf.NewVector2(-0.5, 1.5)
+	min := mathf.NewVec2(0, 0)
+	max := mathf.NewVec2(1, 1)
+	toClamp := mathf.NewVec2(-0.5, 1.5)
 	clamped := toClamp.Clamp(min, max)
-	expected = mathf.NewVector2(0, 1)
+	expected = mathf.NewVec2(0, 1)
 	if !vec2AlmostEqual(clamped, expected) {
 		t.Errorf("Clamp failed: got %v, expected %v", clamped, expected)
 	}
 
 	// Test negation
 	negated := v1.Neg()
-	expected = mathf.NewVector2(-1, -2)
+	expected = mathf.NewVec2(-1, -2)
 	if !vec2AlmostEqual(negated, expected) {
 		t.Errorf("Neg failed: got %v, expected %v", negated, expected)
 	}

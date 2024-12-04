@@ -10,8 +10,8 @@ import (
 
 func TestRect2i(t *testing.T) {
 	rect := mathf.NewRect2i(1, 2, 3, 4)
-	expectedPos := mathf.NewVector2i(1, 2)
-	expectedSize := mathf.NewVector2i(3, 4)
+	expectedPos := mathf.NewVec2i(1, 2)
+	expectedSize := mathf.NewVec2i(3, 4)
 
 	// Test basic properties
 	assert.True(t, vec2iEqual(rect.Position, expectedPos), "Position should be %v, got %v", expectedPos, rect.Position)
@@ -26,19 +26,19 @@ func TestRect2i(t *testing.T) {
 
 	// Test Center
 	center := rect.Center()
-	expectedCenter := mathf.NewVector2i(2, 4)
+	expectedCenter := mathf.NewVec2i(2, 4)
 	assert.True(t, vec2iEqual(center, expectedCenter), "Center should be %v, got %v", expectedCenter, center)
 
 	// Test End
 	end := rect.End()
-	expectedEnd := mathf.NewVector2i(4, 6)
+	expectedEnd := mathf.NewVec2i(4, 6)
 	assert.True(t, vec2iEqual(end, expectedEnd), "End should be %v, got %v", expectedEnd, end)
 
 	// Test HasPoint
-	pointInside := mathf.NewVector2i(2, 3)
+	pointInside := mathf.NewVec2i(2, 3)
 	assert.True(t, rect.HasPoint(pointInside), "Point %v should be inside rect %v", pointInside, rect)
 
-	pointOutside := mathf.NewVector2i(0, 0)
+	pointOutside := mathf.NewVec2i(0, 0)
 	assert.False(t, rect.HasPoint(pointOutside), "Point %v should be outside rect %v", pointOutside, rect)
 
 	// Test Intersects
@@ -73,7 +73,7 @@ func TestRect2i(t *testing.T) {
 		"GrowIndividual should be %v, got %v", expectedGrownIndiv, grownIndiv)
 
 	// Test Expand
-	expanded := rect.Expand(mathf.NewVector2i(5, 6))
+	expanded := rect.Expand(mathf.NewVec2i(5, 6))
 	expectedExpanded := mathf.NewRect2i(1, 2, 4, 4)
 	assert.True(t, rect2iEqual(expanded, expectedExpanded),
 		"Expand should be %v, got %v", expectedExpanded, expanded)

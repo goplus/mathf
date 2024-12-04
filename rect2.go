@@ -7,8 +7,8 @@ import (
 type Side = impl.Side
 
 type Rect2 struct {
-	Position Vector2
-	Size     Vector2
+	Position Vec2
+	Size     Vec2
 }
 
 func (v Rect2) toImpl() impl.Rect2 {
@@ -20,25 +20,25 @@ func (v Rect2) toImpl() impl.Rect2 {
 
 func (v Rect2) fromImpl(iv impl.Rect2) Rect2 {
 	return Rect2{
-		Position: NewVector2(float64(iv.Position[0]), float64(iv.Position[1])),
-		Size:     NewVector2(float64(iv.Size[0]), float64(iv.Size[1])),
+		Position: NewVec2(float64(iv.Position[0]), float64(iv.Position[1])),
+		Size:     NewVec2(float64(iv.Size[0]), float64(iv.Size[1])),
 	}
 }
 
 func NewRect2(x, y, w, h float64) Rect2 {
 	return Rect2{
-		Position: NewVector2(x, y),
-		Size:     NewVector2(w, h),
+		Position: NewVec2(x, y),
+		Size:     NewVec2(w, h),
 	}
 }
 
-func (r *Rect2) End() Vector2 {
+func (r *Rect2) End() Vec2 {
 	impl := r.toImpl()
 	end := impl.End()
-	return NewVector2(float64(end[0]), float64(end[1]))
+	return NewVec2(float64(end[0]), float64(end[1]))
 }
 
-func (r *Rect2) SetEnd(end Vector2) {
+func (r *Rect2) SetEnd(end Vec2) {
 	impl := r.toImpl()
 	impl.SetEnd(end.toImpl())
 	*r = r.fromImpl(impl)
@@ -56,7 +56,7 @@ func (r Rect2) Encloses(b Rect2) bool {
 	return r.toImpl().Encloses(b.toImpl())
 }
 
-func (r Rect2) Expand(to Vector2) Rect2 {
+func (r Rect2) Expand(to Vec2) Rect2 {
 	return r.fromImpl(r.toImpl().Expand(to.toImpl()))
 }
 
@@ -64,10 +64,10 @@ func (r Rect2) Area() float64 {
 	return r.toImpl().Area()
 }
 
-func (r Rect2) Center() Vector2 {
+func (r Rect2) Center() Vec2 {
 	impl := r.toImpl()
 	center := impl.Center()
-	return NewVector2(float64(center[0]), float64(center[1]))
+	return NewVec2(float64(center[0]), float64(center[1]))
 }
 
 func (r Rect2) Grow(amount float64) Rect2 {
@@ -86,7 +86,7 @@ func (r Rect2) HasArea() bool {
 	return r.toImpl().HasArea()
 }
 
-func (r Rect2) HasPoint(point Vector2) bool {
+func (r Rect2) HasPoint(point Vec2) bool {
 	return r.toImpl().HasPoint(point.toImpl())
 }
 

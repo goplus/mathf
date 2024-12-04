@@ -8,40 +8,40 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestVector2i(t *testing.T) {
+func TestVec2i(t *testing.T) {
 	// Test construction
-	v1 := mathf.NewVector2i(1, 2)
-	v2 := mathf.NewVector2i(3, 4)
+	v1 := mathf.NewVec2i(1, 2)
+	v2 := mathf.NewVec2i(3, 4)
 
 	// Test addition
 	sum := v1.Add(v2)
-	assert.Equal(t, mathf.NewVector2i(4, 6), sum, "Addition failed")
+	assert.Equal(t, mathf.NewVec2i(4, 6), sum, "Addition failed")
 
 	// Test subtraction
 	diff := v2.Sub(v1)
-	assert.Equal(t, mathf.NewVector2i(2, 2), diff, "Subtraction failed")
+	assert.Equal(t, mathf.NewVec2i(2, 2), diff, "Subtraction failed")
 
 	// Test multiplication
 	prod := v1.Mul(v2)
-	assert.Equal(t, mathf.NewVector2i(3, 8), prod, "Multiplication failed")
+	assert.Equal(t, mathf.NewVec2i(3, 8), prod, "Multiplication failed")
 
 	// Test division
 	quot := v2.Div(v1)
-	assert.Equal(t, mathf.NewVector2i(3, 2), quot, "Division failed")
+	assert.Equal(t, mathf.NewVec2i(3, 2), quot, "Division failed")
 
 	// Test scalar operations
 	scalar := 2
 	scalarAdd := v1.Addi(scalar)
-	assert.Equal(t, mathf.NewVector2i(3, 4), scalarAdd, "Scalar addition failed")
+	assert.Equal(t, mathf.NewVec2i(3, 4), scalarAdd, "Scalar addition failed")
 
 	scalarSub := v1.Subi(scalar)
-	assert.Equal(t, mathf.NewVector2i(-1, 0), scalarSub, "Scalar subtraction failed")
+	assert.Equal(t, mathf.NewVec2i(-1, 0), scalarSub, "Scalar subtraction failed")
 
 	scalarMul := v1.Muli(scalar)
-	assert.Equal(t, mathf.NewVector2i(2, 4), scalarMul, "Scalar multiplication failed")
+	assert.Equal(t, mathf.NewVec2i(2, 4), scalarMul, "Scalar multiplication failed")
 
 	scalarDiv := v2.Divi(scalar)
-	assert.Equal(t, mathf.NewVector2i(1, 2), scalarDiv, "Scalar division failed")
+	assert.Equal(t, mathf.NewVec2i(1, 2), scalarDiv, "Scalar division failed")
 
 	// Test dot product
 	dot := v1.Dot(v2)
@@ -62,21 +62,21 @@ func TestVector2i(t *testing.T) {
 	assert.Equal(t, 8, distanceSquared, "Distance squared calculation failed")
 
 	// Test abs
-	negVector := mathf.NewVector2i(-1, -2)
-	absVector := negVector.Abs()
-	assert.Equal(t, v1, absVector, "Abs failed")
+	negVec := mathf.NewVec2i(-1, -2)
+	absVec := negVec.Abs()
+	assert.Equal(t, v1, absVec, "Abs failed")
 
 	// Test sign
-	signVector := negVector.Sign()
-	assert.Equal(t, mathf.NewVector2i(-1, -1), signVector, "Sign failed")
+	signVec := negVec.Sign()
+	assert.Equal(t, mathf.NewVec2i(-1, -1), signVec, "Sign failed")
 
 	// Test clamp
-	min := mathf.NewVector2i(0, 0)
-	max := mathf.NewVector2i(5, 5)
+	min := mathf.NewVec2i(0, 0)
+	max := mathf.NewVec2i(5, 5)
 	clamped := v1.Clamp(min, max)
 	assert.Equal(t, v1, clamped, "Clamp failed")
 
 	// Test negation
 	neg := v1.Neg()
-	assert.Equal(t, mathf.NewVector2i(-1, -2), neg, "Negation failed")
+	assert.Equal(t, mathf.NewVec2i(-1, -2), neg, "Negation failed")
 }

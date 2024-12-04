@@ -23,7 +23,7 @@ func NewQuaternion(x, y, z, w float64) Quaternion {
 	return Quaternion{Float(x), Float(y), Float(z), Float(w)}
 }
 
-func NewQuaternionFromAxisAngle(axis Vector3, angle float64) Quaternion {
+func NewQuaternionFromAxisAngle(axis Vec3, angle float64) Quaternion {
 	halfAngle := angle * 0.5
 	s := math.Sin(halfAngle)
 	return Quaternion{
@@ -98,16 +98,16 @@ func (q Quaternion) Slerpf(to Quaternion, weight float64) Quaternion {
 	return q.fromImpl(q.toImpl().Slerp(to.toImpl(), weight))
 }
 
-func (q Quaternion) GetEuler() Vector3 {
+func (q Quaternion) GetEuler() Vec3 {
 	angles := q.toImpl().EulerAngles(2) // EulerOrderYXZ = 2
-	return NewVector3(float64(angles[0]), float64(angles[1]), float64(angles[2]))
+	return NewVec3(float64(angles[0]), float64(angles[1]), float64(angles[2]))
 }
 
-func (q Quaternion) RotateVector3(v Vector3) Vector3 {
-	// Convert quaternion to basis and use it to rotate the vector
+func (q Quaternion) RotateVec3(v Vec3) Vec3 {
+	// Convert quaternion to basis and use it to rotate the Vec
 	qv := NewQuaternion(float64(v.X), float64(v.Y), float64(v.Z), 0)
 	qr := q.Mul(qv).Mul(q.Conjugate())
-	return NewVector3(float64(qr.X), float64(qr.Y), float64(qr.Z))
+	return NewVec3(float64(qr.X), float64(qr.Y), float64(qr.Z))
 }
 
 func (q Quaternion) Neg() Quaternion {

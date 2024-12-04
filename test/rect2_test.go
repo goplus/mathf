@@ -11,8 +11,8 @@ import (
 func TestRect2(t *testing.T) {
 	// Test construction and basic properties
 	rect := mathf.NewRect2(1, 2, 3, 4)
-	expectedPos := mathf.NewVector2(1, 2)
-	expectedSize := mathf.NewVector2(3, 4)
+	expectedPos := mathf.NewVec2(1, 2)
+	expectedSize := mathf.NewVec2(3, 4)
 
 	if !vec2AlmostEqual(rect.Position, expectedPos) {
 		t.Errorf("Position not set correctly: got %v, expected %v", rect.Position, expectedPos)
@@ -29,10 +29,10 @@ func TestRect2(t *testing.T) {
 	}
 
 	// Test HasPoint
-	pointInside := mathf.NewVector2(2, 3)
+	pointInside := mathf.NewVec2(2, 3)
 	assert.True(t, rect.HasPoint(pointInside), "Point %v should be inside rect %v", pointInside, rect)
 
-	pointOutside := mathf.NewVector2(0, 0)
+	pointOutside := mathf.NewVec2(0, 0)
 	assert.False(t, rect.HasPoint(pointOutside), "Point %v should be outside rect %v", pointOutside, rect)
 
 	// Test Intersects
@@ -73,8 +73,8 @@ func TestRect2(t *testing.T) {
 
 func TestRect2Creation(t *testing.T) {
 	rect := mathf.NewRect2(10, 20, 30, 40)
-	expectedPos := mathf.NewVector2(10, 20)
-	expectedSize := mathf.NewVector2(30, 40)
+	expectedPos := mathf.NewVec2(10, 20)
+	expectedSize := mathf.NewVec2(30, 40)
 
 	assert.True(t, vec2AlmostEqual(rect.Position, expectedPos), "Position should be %v, got %v", expectedPos, rect.Position)
 	assert.True(t, vec2AlmostEqual(rect.Size, expectedSize), "Size should be %v, got %v", expectedSize, rect.Size)
