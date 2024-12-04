@@ -1,6 +1,7 @@
 package mathf
 
 import (
+	"fmt"
 	"unsafe"
 
 	"github.com/godot-ext/mathf/impl"
@@ -128,4 +129,8 @@ func (v Vec2) Lerpf(to Vec2, weight float64) Vec2 {
 
 func (v Vec2) Neg() Vec2 {
 	return v.fromImpl(v.toImpl().Neg())
+}
+
+func (v Vec2) String() string {
+	return fmt.Sprintf("(%g, %g)", v.X, v.Y)
 }

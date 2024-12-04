@@ -1,6 +1,7 @@
 package mathf
 
 import (
+	"fmt"
 	"unsafe"
 
 	"github.com/godot-ext/mathf/impl"
@@ -105,4 +106,8 @@ func (v Vec3i) Cross(other Vec3i) Vec3i {
 		Y: Int(v.Z*other.X - v.X*other.Z),
 		Z: Int(v.X*other.Y - v.Y*other.X),
 	}
+}
+
+func (v Vec3i) String() string {
+	return fmt.Sprintf("(%d, %d, %d)", v.X, v.Y, v.Z)
 }

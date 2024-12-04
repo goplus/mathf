@@ -1,6 +1,8 @@
 package mathf
 
 import (
+	"fmt"
+
 	"github.com/godot-ext/mathf/impl"
 )
 
@@ -100,6 +102,10 @@ func (r Rect2) Intersects(b Rect2, includeBorders bool) bool {
 
 func (r Rect2) Merge(b Rect2) Rect2 {
 	return r.fromImpl(r.toImpl().Merge(b.toImpl()))
+}
+
+func (r Rect2) String() string {
+	return fmt.Sprintf("[pos=(%g, %g), size=(%g, %g)]", r.Position.X, r.Position.Y, r.Size.X, r.Size.Y)
 }
 
 func minf(a, b Float) Float {

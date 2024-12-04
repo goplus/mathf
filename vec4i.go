@@ -1,6 +1,7 @@
 package mathf
 
 import (
+	"fmt"
 	"github.com/godot-ext/mathf/impl"
 )
 
@@ -94,4 +95,8 @@ func (v Vec4i) Clamp(min, max Vec4i) Vec4i {
 
 func (v Vec4i) Neg() Vec4i {
 	return v.fromImpl(v.toImpl().Neg())
+}
+
+func (v Vec4i) String() string {
+	return fmt.Sprintf("(%d, %d, %d, %d)", v.X, v.Y, v.Z, v.W)
 }

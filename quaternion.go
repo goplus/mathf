@@ -1,6 +1,7 @@
 package mathf
 
 import (
+	"fmt"
 	"math"
 	"unsafe"
 
@@ -112,4 +113,8 @@ func (q Quaternion) RotateVec3(v Vec3) Vec3 {
 
 func (q Quaternion) Neg() Quaternion {
 	return q.fromImpl(q.toImpl().Neg())
+}
+
+func (q Quaternion) String() string {
+	return fmt.Sprintf("[x=%g, y=%g, z=%g, w=%g]", q.X, q.Y, q.Z, q.W)
 }
