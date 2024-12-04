@@ -1,8 +1,9 @@
 package mathf
 
 import (
-	"godot-ext/mathf/impl"
 	"unsafe"
+
+	"github.com/godot-ext/mathf/impl"
 )
 
 type Vector2 struct {

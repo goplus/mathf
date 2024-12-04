@@ -1,4 +1,4 @@
-module godot-ext/mathf
+module github.com/godot-ext/mathf
 
 go 1.21
 

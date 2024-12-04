@@ -1,9 +1,10 @@
 package mathf
 
 import (
-	"godot-ext/mathf/impl"
 	"math"
 	"unsafe"
+
+	"github.com/godot-ext/mathf/impl"
 )
 
 type Quaternion struct {

@@ -1,8 +1,9 @@
 package test
 
 import (
-	"godot-ext/mathf"
 	"testing"
+
+	"github.com/godot-ext/mathf"
 )
 
 func TestVector3(t *testing.T) {

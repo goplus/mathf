@@ -1,8 +1,9 @@
 package test
 
 import (
-	"godot-ext/mathf"
 	"math"
+
+	"github.com/godot-ext/mathf"
 )
 
 func almostEqual(a, b float64) bool {

@@ -1,7 +1,7 @@
 package mathf
 
 import (
-	"godot-ext/mathf/impl"
+	"github.com/godot-ext/mathf/impl"
 )
 
 type Side = impl.Side
