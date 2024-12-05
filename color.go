@@ -113,6 +113,7 @@ func (c Color) Invert() Color {
 }
 
 func (c Color) Lerp(to Color, t float64) Color {
+	t = Clamp01f(t)
 	return Color{
 		R: Lerpf(c.R, to.R, t),
 		G: Lerpf(c.G, to.G, t),
@@ -200,8 +201,12 @@ func (c *Color) ScaleBrightness(scale float64) {
 	c.FromHSV(h, s, val)
 }
 
+func LerpColor(from Color, to Color, t float64) Color {
+	return from.Lerp(to, t)
+}
+
 // Random returns a random color.
-func Random() Color {
+func RandomColor() Color {
 	h := 360 * rand.Float64()
 	s := 0.7 + (0.3 * rand.Float64())
 	v := 0.6 + (0.4 * rand.Float64())
