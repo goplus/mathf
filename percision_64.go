@@ -4,4 +4,4 @@
 package mathf
 
 type Float = float64
-type Int = int64
+type Int = int32
