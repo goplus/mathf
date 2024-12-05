@@ -18,6 +18,34 @@ type Color struct {
 	R, G, B, A float64
 }
 
+func ColorWhite() Color {
+	return NewColor(1, 1, 1, 1)
+}
+func ColorBlack() Color {
+	return NewColor(0, 0, 0, 1)
+}
+func ColorRed() Color {
+	return NewColor(1, 0, 0, 1)
+}
+func ColorGreen() Color {
+	return NewColor(0, 1, 0, 1)
+}
+func ColorBlue() Color {
+	return NewColor(0, 0, 1, 1)
+}
+func ColorYellow() Color {
+	return NewColor(1, 1, 0, 1)
+}
+func ColorCyan() Color {
+	return NewColor(0, 1, 1, 1)
+}
+func ColorMagenta() Color {
+	return NewColor(1, 0, 1, 1)
+}
+func ColorTransparent() Color {
+	return NewColor(0, 0, 0, 0)
+}
+
 func NewColor(r, g, b, a float64) Color {
 	return Color{
 		R: float64(r),
