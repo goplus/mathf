@@ -5,15 +5,15 @@ import (
 )
 
 type Color struct {
-	R, G, B, A float32
+	R, G, B, A float64
 }
 
 func NewColor(r, g, b, a float64) Color {
 	return Color{
-		R: float32(r),
-		G: float32(g),
-		B: float32(b),
-		A: float32(a),
+		R: float64(r),
+		G: float64(g),
+		B: float64(b),
+		A: float64(a),
 	}
 }
 
@@ -48,7 +48,7 @@ func (c Color) Mul(other Color) Color {
 	}
 }
 
-func (c Color) Mulf(f float32) Color {
+func (c Color) Mulf(f float64) Color {
 	return Color{
 		R: c.R * f,
 		G: c.G * f,
@@ -59,10 +59,10 @@ func (c Color) Mulf(f float32) Color {
 
 func (c Color) Clamp() Color {
 	return Color{
-		R: clampf32(c.R, 0, 1),
-		G: clampf32(c.G, 0, 1),
-		B: clampf32(c.B, 0, 1),
-		A: clampf32(c.A, 0, 1),
+		R: clampf64(c.R, 0, 1),
+		G: clampf64(c.G, 0, 1),
+		B: clampf64(c.B, 0, 1),
+		A: clampf64(c.A, 0, 1),
 	}
 }
 
@@ -75,16 +75,16 @@ func (c Color) Invert() Color {
 	}
 }
 
-func (c Color) Lerp(to Color, t float32) Color {
+func (c Color) Lerp(to Color, t float64) Color {
 	return Color{
-		R: lerpf32(c.R, to.R, t),
-		G: lerpf32(c.G, to.G, t),
-		B: lerpf32(c.B, to.B, t),
-		A: lerpf32(c.A, to.A, t),
+		R: lerpf64(c.R, to.R, t),
+		G: lerpf64(c.G, to.G, t),
+		B: lerpf64(c.B, to.B, t),
+		A: lerpf64(c.A, to.A, t),
 	}
 }
 
-func clampf32(v, min, max float32) float32 {
+func clampf64(v, min, max float64) float64 {
 	if v < min {
 		return min
 	}
@@ -94,6 +94,6 @@ func clampf32(v, min, max float32) float32 {
 	return v
 }
 
-func lerpf32(from, to, t float32) float32 {
+func lerpf64(from, to, t float64) float64 {
 	return from + (to-from)*t
 }
