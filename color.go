@@ -152,73 +152,69 @@ func (c Color) Lerp(to Color, t float64) Color {
 
 // HSV2RGB converts hue (0-360), saturation (0-1), and brightness (0-1) to RGB.
 func (c *Color) FromHSV(h, s, v float64) {
-	var r, g, b float64
 	h = math.Mod(h, 360)
 	if h < 0 {
 		h += 360
 	}
-	s = math.Max(0, math.Min(s, 1))
-	v = math.Max(0, math.Min(v, 1))
+	s = math.Max(0, math.Min(1, s))
+	v = math.Max(0, math.Min(1, v))
 
-	i := math.Floor(h / 60)
-	f := (h / 60) - i
-	p := v * (1 - s)
-	q := v * (1 - (s * f))
-	t := v * (1 - (s * (1 - f)))
-	switch int(i) {
-	case 0:
-		r = v
-		g = t
-		b = p
-	case 1:
-		r = q
-		g = v
-		b = p
-	case 2:
-		r = p
-		g = v
-		b = t
-	case 3:
-		r = p
-		g = q
-		b = v
-	case 4:
-		r = t
-		g = p
-		b = v
-	case 5:
-		r = v
-		g = p
-		b = q
+	z := v * s
+	x := z * (1 - math.Abs(math.Mod(h/60, 2)-1))
+	m := v - z
+
+	var rf, gf, bf float64
+	switch {
+	case h < 60:
+		rf, gf, bf = z, x, 0
+	case h < 120:
+		rf, gf, bf = x, z, 0
+	case h < 180:
+		rf, gf, bf = 0, z, x
+	case h < 240:
+		rf, gf, bf = 0, x, z
+	case h < 300:
+		rf, gf, bf = x, 0, z
+	default:
+		rf, gf, bf = z, 0, x
 	}
-	c.R = r
-	c.G = g
-	c.B = b
+
+	c.R = Clamp01f(rf + m)
+	c.G = Clamp01f(gf + m)
+	c.B = Clamp01f(bf + m)
+	c.A = 1
 }
 
 // RGB2HSV converts RGB to an array containing the hue, saturation, and brightness.
 func (c *Color) ToHSV() (h, s, v float64) {
-	var f, i float64
+
 	r := float64(c.R)
 	g := float64(c.G)
 	b := float64(c.B)
-	x := math.Min(math.Min(r, g), b)
-	v = math.Max(math.Max(r, g), b)
-	if x == v {
-		return // gray; hue arbitrarily reported as zero
-	}
-	if r == x {
-		f = g - b
-		i = 3
-	} else if g == x {
-		f = b - r
-		i = 5
+
+	max := math.Max(r, math.Max(g, b))
+	min := math.Min(r, math.Min(g, b))
+	delta := max - min + 1e-20
+
+	v = max
+	if max == 0 {
+		s = 0
 	} else {
-		f = r - g
-		i = 1
+		s = delta / max
 	}
-	h = math.Mod((i-(f/(v-x)))*60, 360)
-	s = (v - x) / v
+
+	if delta == 0 {
+		h = 0
+	} else {
+		switch max {
+		case r:
+			h = math.Mod((g-b)/delta*60+360, 360)
+		case g:
+			h = (b-r)/delta*60 + 120
+		case b:
+			h = (r-g)/delta*60 + 240
+		}
+	}
 	return
 }
 
