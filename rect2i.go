@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"unsafe"
 
-	"github.com/realdream-ai/mathf/impl"
+	"github.com/goplus/mathf/impl"
 )
 
 type Rect2i struct {

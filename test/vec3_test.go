@@ -3,7 +3,7 @@ package test
 import (
 	"testing"
 
-	"github.com/realdream-ai/mathf"
+	"github.com/goplus/mathf"
 )
 
 func TestVec3(t *testing.T) {

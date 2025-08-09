@@ -19,7 +19,7 @@ A comprehensive mathematical utility library for Go, providing implementations o
 ## Installation
 
 ```bash
-go get github.com/realdream-ai/mathf
+go get github.com/goplus/mathf
 ```
 
 ## Usage
@@ -27,7 +27,7 @@ go get github.com/realdream-ai/mathf
 ### Vectors
 
 ```go
-import "github.com/realdream-ai/mathf"
+import "github.com/goplus/mathf"
 
 // Create vectors
 v1 := mathf.NewVector2(1.0, 2.0)
@@ -47,7 +47,7 @@ normalized := v1.Normalized()
 ### Rectangles
 
 ```go
-import "github.com/realdream-ai/mathf"
+import "github.com/goplus/mathf"
 
 // Create rectangles
 rect := mathf.NewRect2(0, 0, 100, 100)  // x, y, width, height
@@ -66,7 +66,7 @@ grown := rect.Grow(10)
 ### Quaternions
 
 ```go
-import "github.com/realdream-ai/mathf"
+import "github.com/goplus/mathf"
 
 // Create quaternion
 q := mathf.NewQuaternion(x, y, z, w)
