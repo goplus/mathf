@@ -1,4 +1,11 @@
-# Mathf - Mathematical Utilities for Go
+Mathf - Mathematical Utilities for Go
+========
+
+[![Build Status](https://github.com/goplus/mathf/actions/workflows/go.yml/badge.svg)](https://github.com/goplus/mathf/actions/workflows/go.yml)
+[![Go Report Card](https://goreportcard.com/badge/github.com/goplus/mathf)](https://goreportcard.com/report/github.com/goplus/mathf)
+[![GitHub release](https://img.shields.io/github/v/tag/goplus/mathf.svg?label=release)](https://github.com/goplus/mathf/releases)
+[![Language](https://img.shields.io/badge/language-XGo-blue.svg)](https://github.com/goplus/gop)
+[![GoDoc](https://img.shields.io/badge/godoc-reference-teal.svg)](https://pkg.go.dev/mod/github.com/goplus/mathf)
 
 A comprehensive mathematical utility library for Go, providing implementations of common geometric types and operations. This library is designed to be efficient, easy to use, and suitable for game development and graphics applications.
 
