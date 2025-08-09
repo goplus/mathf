@@ -5,7 +5,7 @@ import (
 	"math"
 	"unsafe"
 
-	"github.com/realdream-ai/mathf/impl"
+	"github.com/goplus/mathf/impl"
 )
 
 type Quaternion struct {

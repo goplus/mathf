@@ -4,7 +4,7 @@ import (
 	"math"
 	"testing"
 
-	"github.com/realdream-ai/mathf"
+	"github.com/goplus/mathf"
 )
 
 func TestVec4(t *testing.T) {
